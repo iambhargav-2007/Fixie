@@ -12,5 +12,5 @@ def list_providers(service: Optional[str] = None, specialization: Optional[str] 
 def get_provider(provider_id: str) -> ProviderResponse:
     provider_data = providers_repository.get_provider_by_id(provider_id)
     if not provider_data:
-        raise HTTPException(status_code=404, detail=f"Provider {provider_id} not found")
+        raise HTTPException(status_code=404, detail="Provider not found")
     return ProviderResponse(**provider_data)
