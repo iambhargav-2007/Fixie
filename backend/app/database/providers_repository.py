@@ -20,3 +20,27 @@ def get_providers(service: Optional[str] = None, specialization: Optional[str] =
 def get_provider_by_id(provider_id: str) -> Optional[Dict]:
     db = get_db()
     return db["providers"].find_one({"_id": provider_id})
+
+def get_nearby_providers(service: str, specialization: Optional[str], lat: float, lon: float, radius_meters: int) -> List[Dict]:
+    db = get_db()
+    
+    query = {"services": service}
+    if specialization:
+        query["specializations"] = specialization
+        
+    pipeline = [
+        {
+            "$geoNear": {
+                "near": {
+                    "type": "Point",
+                    "coordinates": [lon, lat]
+                },
+                "distanceField": "distance_meters",
+                "maxDistance": radius_meters,
+                "spherical": True,
+                "query": query
+            }
+        }
+    ]
+    
+    return list(db["providers"].aggregate(pipeline))

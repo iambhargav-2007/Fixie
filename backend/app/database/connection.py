@@ -15,6 +15,8 @@ def get_db():
             # Verify connection
             client.admin.command('ping')
             db = client[DATABASE_NAME]
+            # Ensure 2dsphere index for geospatial search
+            db["providers"].create_index([("location", "2dsphere")])
             return db
         else:
             print("MONGODB_URI environment variable not set")

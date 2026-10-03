@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List
+from typing import List, Optional
 from app.models.provider import GeoJSONPoint, Pricing, Availability
 
 class ProviderResponse(BaseModel):
@@ -14,6 +14,7 @@ class ProviderResponse(BaseModel):
     verified: bool
     experience: int
     service_area: str
+    distance_km: Optional[float] = None
 
     class Config:
         populate_by_name = True
