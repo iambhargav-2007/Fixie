@@ -9,7 +9,11 @@ def discover_nearby_providers(
     lat: float,
     lon: float,
     radius: int,
-    specialization: Optional[str] = None
+    specialization: Optional[str] = None,
+    minimum_rating: Optional[float] = None,
+    max_budget: Optional[float] = None,
+    preferred_time: Optional[str] = None,
+    preferred_date: Optional[str] = None
 ) -> ProviderListResponse:
     # Validate service exists
     svc = services_repository.get_service_by_id(service)
@@ -21,7 +25,11 @@ def discover_nearby_providers(
         specialization=specialization,
         lat=lat,
         lon=lon,
-        radius_meters=radius
+        radius_meters=radius,
+        minimum_rating=minimum_rating,
+        max_budget=max_budget,
+        preferred_time=preferred_time,
+        preferred_date=preferred_date
     )
     
     providers = []

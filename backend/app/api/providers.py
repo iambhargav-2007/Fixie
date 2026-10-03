@@ -12,14 +12,22 @@ def discover_nearby(
     latitude: float = Query(..., ge=-90, le=90),
     longitude: float = Query(..., ge=-180, le=180),
     radius: int = Query(5000, gt=0, le=25000),
-    specialization: Optional[str] = None
+    specialization: Optional[str] = None,
+    minimum_rating: Optional[float] = Query(None, ge=0, le=5),
+    max_budget: Optional[float] = Query(None, gt=0),
+    preferred_time: Optional[str] = None,
+    preferred_date: Optional[str] = None
 ):
     return discovery_service.discover_nearby_providers(
         service=service,
         lat=latitude,
         lon=longitude,
         radius=radius,
-        specialization=specialization
+        specialization=specialization,
+        minimum_rating=minimum_rating,
+        max_budget=max_budget,
+        preferred_time=preferred_time,
+        preferred_date=preferred_date
     )
 
 @router.get("", response_model=ProviderListResponse)

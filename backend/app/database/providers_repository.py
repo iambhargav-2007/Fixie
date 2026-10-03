@@ -21,12 +21,33 @@ def get_provider_by_id(provider_id: str) -> Optional[Dict]:
     db = get_db()
     return db["providers"].find_one({"_id": provider_id})
 
-def get_nearby_providers(service: str, specialization: Optional[str], lat: float, lon: float, radius_meters: int) -> List[Dict]:
+def get_nearby_providers(
+    service: str, 
+    specialization: Optional[str], 
+    lat: float, 
+    lon: float, 
+    radius_meters: int,
+    minimum_rating: Optional[float] = None,
+    max_budget: Optional[float] = None,
+    preferred_time: Optional[str] = None,
+    preferred_date: Optional[str] = None
+) -> List[Dict]:
     db = get_db()
     
     query = {"services": service}
     if specialization:
         query["specializations"] = specialization
+        
+    if minimum_rating is not None:
+        query["rating"] = {"$gte": minimum_rating}
+        
+    if max_budget is not None:
+        query["pricing.min"] = {"$lte": max_budget}
+        
+    if preferred_time or preferred_date:
+        query["availability.status"] = "available"
+        if preferred_time:
+            query["availability.slots"] = preferred_time
         
     pipeline = [
         {
