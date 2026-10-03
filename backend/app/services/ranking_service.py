@@ -87,7 +87,7 @@ def rank_providers(req: RecommendationRequest) -> List[RankedProviderResponse]:
             -x["fit_score"],
             x["distance_km"],
             -x["rating"],
-            x["provider_id"]
+            x.get("id", x.get("_id", ""))
         )
     )
     

@@ -47,4 +47,6 @@ def update_request_status(request_id: str, new_status: RequestStatus) -> Service
         raise HTTPException(status_code=400, detail=f"Invalid transition from {current_status.value} to {new_status.value}")
         
     updated_req = requests_repository.update_request_status(request_id, new_status.value)
+    if not updated_req:
+        raise HTTPException(status_code=500, detail="Failed to update request")
     return ServiceRequest(**updated_req)
