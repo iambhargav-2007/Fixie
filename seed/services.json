@@ -1,0 +1,146 @@
+[
+  {
+    "category": "Appliance Repair",
+    "services": [
+      {
+        "id": "ac_repair",
+        "name": "AC Repair",
+        "description": "Diagnosis and repair of air conditioning units including cooling, leakage, and compressor issues.",
+        "common_issues": ["water_leakage", "not_cooling", "strange_noise", "gas_leakage", "power_failure"]
+      },
+      {
+        "id": "ac_cleaning",
+        "name": "AC Cleaning & Servicing",
+        "description": "Routine filter cleaning, deep coil cleaning, and maintenance.",
+        "common_issues": ["dust_accumulation", "bad_odor", "low_airflow"]
+      },
+      {
+        "id": "washing_machine_repair",
+        "name": "Washing Machine Repair",
+        "description": "Front load and top load repair for drum, motor, drain, and vibration problems.",
+        "common_issues": ["drum_not_spinning", "water_drain_issue", "heavy_vibration", "leakage"]
+      },
+      {
+        "id": "refrigerator_repair",
+        "name": "Refrigerator Repair",
+        "description": "Repair for cooling failure, ice build-up, and thermostat problems.",
+        "common_issues": ["not_cooling", "water_leakage_inside", "compressor_noise", "frost_buildup"]
+      },
+      {
+        "id": "tv_repair",
+        "name": "TV Repair",
+        "description": "Screen panel, sound, and board repairs for LED/OLED televisions.",
+        "common_issues": ["no_display", "sound_issue", "vertical_lines", "power_issue"]
+      }
+    ]
+  },
+  {
+    "category": "Plumbing",
+    "services": [
+      {
+        "id": "pipe_leakage",
+        "name": "Pipe Leakage Repair",
+        "description": "Fixing burst, leaking, or dripping pipes and pipe joint replacements.",
+        "common_issues": ["water_dripping", "pipe_crack", "wall_dampness"]
+      },
+      {
+        "id": "tap_repair",
+        "name": "Tap & Faucet Repair",
+        "description": "Repair or replacement of dripping, jammed, or broken taps.",
+        "common_issues": ["continuous_drip", "broken_handle", "low_water_pressure"]
+      },
+      {
+        "id": "drainage_blockage",
+        "name": "Drainage Unblocking",
+        "description": "Clearing clogged kitchen sinks, bathroom drains, and main sewer lines.",
+        "common_issues": ["sink_overflow", "slow_drainage", "clogged_sewer"]
+      }
+    ]
+  },
+  {
+    "category": "Electrical",
+    "services": [
+      {
+        "id": "fan_repair",
+        "name": "Ceiling / Exhaust Fan Repair",
+        "description": "Capacitor replacement, motor rewinding, and regulator fixes.",
+        "common_issues": ["slow_speed", "abnormal_noise", "fan_stopped"]
+      },
+      {
+        "id": "switch_repair",
+        "name": "Switch & Socket Repair",
+        "description": "Repair or replacement of sparking switches, burnt sockets, and MCB trips.",
+        "common_issues": ["sparking", "burnt_socket", "loose_connection"]
+      },
+      {
+        "id": "wiring_repair",
+        "name": "Wiring & Short Circuit Repair",
+        "description": "Diagnostics and rewiring for electrical shorts and phase faults.",
+        "common_issues": ["short_circuit", "frequent_tripping", "power_fluctuation"]
+      }
+    ]
+  },
+  {
+    "category": "Home Maintenance",
+    "services": [
+      {
+        "id": "painting",
+        "name": "House Painting & Touch-up",
+        "description": "Interior and exterior wall painting, waterproof coating, and touch-ups.",
+        "common_issues": ["peeling_paint", "stains", "water_seepage"]
+      },
+      {
+        "id": "furniture_repair",
+        "name": "Carpentry & Furniture Repair",
+        "description": "Fixing hinges, squeaky doors, broken tables, and wardrobes.",
+        "common_issues": ["door_misalignment", "broken_latch", "loose_joints"]
+      },
+      {
+        "id": "wall_repair",
+        "name": "Wall & Plaster Repair",
+        "description": "Fixing holes, cracks, and plaster damage on interior walls.",
+        "common_issues": ["cracks", "drywall_hole", "damp_patches"]
+      }
+    ]
+  },
+  {
+    "category": "Vehicle Assistance",
+    "services": [
+      {
+        "id": "battery_assistance",
+        "name": "Battery Jumpstart & Replacement",
+        "description": "On-site battery jumpstart, terminal cleanup, and replacement.",
+        "common_issues": ["dead_battery", "clicking_sound_on_ignition"]
+      },
+      {
+        "id": "tyre_assistance",
+        "name": "Tyre Puncture & Replacement",
+        "description": "On-demand tyre puncture repair and spare tyre installation.",
+        "common_issues": ["flat_tyre", "low_pressure", "valve_leak"]
+      },
+      {
+        "id": "minor_breakdown",
+        "name": "Minor Roadside Breakdown",
+        "description": "Immediate roadside inspection for minor mechanical or cooling faults.",
+        "common_issues": ["engine_overheating", "brake_stiffness"]
+      }
+    ]
+  },
+  {
+    "category": "Cleaning",
+    "services": [
+      {
+        "id": "home_cleaning",
+        "name": "Full Home Deep Cleaning",
+        "description": "Deep sanitization, floor scrubbing, and dusting across all rooms.",
+        "common_issues": ["deep_stains", "move_in_cleaning", "post_renovation_dust"]
+      },
+      {
+        "id": "sofa_cleaning",
+        "name": "Sofa & Upholstery Cleaning",
+        "description": "Wet extraction and shampooing for fabric and leather sofas.",
+        "common_issues": ["stains", "dust_mites", "odor"]
+      }
+    ]
+  }
+]

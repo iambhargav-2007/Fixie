@@ -1,0 +1,142 @@
+[
+  {
+    "id": "P101",
+    "name": "CoolCare Solutions",
+    "services": ["ac_repair", "ac_cleaning", "refrigerator_repair"],
+    "specializations": ["water_leakage", "compressor_issues", "gas_charging"],
+    "location": {
+      "type": "Point",
+      "coordinates": [78.4482, 17.4156]
+    },
+    "rating": 4.8,
+    "pricing": {
+      "min": 450,
+      "max": 850
+    },
+    "availability": {
+      "status": "available",
+      "slots": ["today_afternoon", "today_evening", "tomorrow_morning"]
+    },
+    "verified": true
+  },
+  {
+    "id": "P102",
+    "name": "Hyderabad Swift AC & Chill",
+    "services": ["ac_repair", "ac_cleaning"],
+    "specializations": ["water_leakage", "rapid_response", "filter_cleaning"],
+    "location": {
+      "type": "Point",
+      "coordinates": [78.3812, 17.4485]
+    },
+    "rating": 4.7,
+    "pricing": {
+      "min": 400,
+      "max": 750
+    },
+    "availability": {
+      "status": "available",
+      "slots": ["today_immediate", "today_evening"]
+    },
+    "verified": true
+  },
+  {
+    "id": "P103",
+    "name": "AquaFlow Plumbing Works",
+    "services": ["pipe_leakage", "tap_repair", "drainage_blockage"],
+    "specializations": ["water_leakage", "emergency_pipe_burst", "sewer_clearing"],
+    "location": {
+      "type": "Point",
+      "coordinates": [78.4744, 17.3616]
+    },
+    "rating": 4.6,
+    "pricing": {
+      "min": 300,
+      "max": 650
+    },
+    "availability": {
+      "status": "available",
+      "slots": ["today_afternoon", "tomorrow_morning"]
+    },
+    "verified": true
+  },
+  {
+    "id": "P104",
+    "name": "SparkSafe Electricals",
+    "services": ["fan_repair", "switch_repair", "wiring_repair"],
+    "specializations": ["short_circuit", "tripping_mcb", "fuse_repair"],
+    "location": {
+      "type": "Point",
+      "coordinates": [78.4357, 17.4325]
+    },
+    "rating": 4.9,
+    "pricing": {
+      "min": 350,
+      "max": 700
+    },
+    "availability": {
+      "status": "available",
+      "slots": ["today_evening", "tomorrow_afternoon"]
+    },
+    "verified": true
+  },
+  {
+    "id": "P105",
+    "name": "ElectroFix Appliance Care",
+    "services": ["washing_machine_repair", "refrigerator_repair", "tv_repair"],
+    "specializations": ["drum_vibration", "cooling_failure", "board_diagnostics"],
+    "location": {
+      "type": "Point",
+      "coordinates": [78.3688, 17.4399]
+    },
+    "rating": 4.5,
+    "pricing": {
+      "min": 500,
+      "max": 1100
+    },
+    "availability": {
+      "status": "available",
+      "slots": ["tomorrow_morning", "tomorrow_afternoon"]
+    },
+    "verified": true
+  },
+  {
+    "id": "P106",
+    "name": "QuickRescue Auto Roadside",
+    "services": ["battery_assistance", "tyre_assistance", "minor_breakdown"],
+    "specializations": ["dead_battery", "flat_tyre_puncture", "jumpstart"],
+    "location": {
+      "type": "Point",
+      "coordinates": [78.4983, 17.4411]
+    },
+    "rating": 4.7,
+    "pricing": {
+      "min": 400,
+      "max": 900
+    },
+    "availability": {
+      "status": "available",
+      "slots": ["today_immediate", "today_afternoon"]
+    },
+    "verified": true
+  },
+  {
+    "id": "P107",
+    "name": "UrbanShine Home Cleaning",
+    "services": ["home_cleaning", "sofa_cleaning"],
+    "specializations": ["deep_cleaning", "stain_removal", "sanitization"],
+    "location": {
+      "type": "Point",
+      "coordinates": [78.4867, 17.3850]
+    },
+    "rating": 4.6,
+    "pricing": {
+      "min": 800,
+      "max": 2500
+    },
+    "availability": {
+      "status": "available",
+      "slots": ["tomorrow_morning"]
+    },
+    "verified": true
+  }
+]
