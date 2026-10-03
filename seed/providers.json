@@ -1,142 +1,1922 @@
 [
   {
-    "id": "P101",
-    "name": "CoolCare Solutions",
-    "services": ["ac_repair", "ac_cleaning", "refrigerator_repair"],
-    "specializations": ["water_leakage", "compressor_issues", "gas_charging"],
+    "_id": "P1001",
+    "name": "Provider 1 Services",
+    "services": [
+      "washing_machine_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
     "location": {
       "type": "Point",
-      "coordinates": [78.4482, 17.4156]
+      "coordinates": [
+        78.56464104244291,
+        17.457083331281048
+      ]
+    },
+    "rating": 3.5,
+    "pricing": {
+      "min": 217,
+      "max": 901
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 12,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1002",
+    "name": "Provider 2 Services",
+    "services": [
+      "tv_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.45128568102656,
+        17.444860760154505
+      ]
+    },
+    "rating": 3.0,
+    "pricing": {
+      "min": 476,
+      "max": 663
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 1,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1003",
+    "name": "Provider 3 Services",
+    "services": [
+      "fan_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.46504602487941,
+        17.439297622340522
+      ]
+    },
+    "rating": 4.3,
+    "pricing": {
+      "min": 197,
+      "max": 891
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 10,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1004",
+    "name": "Provider 4 Services",
+    "services": [
+      "switch_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.4275919604061,
+        17.305821980130446
+      ]
+    },
+    "rating": 4.7,
+    "pricing": {
+      "min": 146,
+      "max": 517
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 14,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1005",
+    "name": "Provider 5 Services",
+    "services": [
+      "refrigerator_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.57562589836257,
+        17.474902376215955
+      ]
+    },
+    "rating": 4.2,
+    "pricing": {
+      "min": 133,
+      "max": 679
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 8,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1006",
+    "name": "Provider 6 Services",
+    "services": [
+      "furniture_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.49453154195284,
+        17.48201085834493
+      ]
+    },
+    "rating": 3.9,
+    "pricing": {
+      "min": 451,
+      "max": 941
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 3,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1007",
+    "name": "Provider 7 Services",
+    "services": [
+      "home_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.42416293638604,
+        17.42438831401901
+      ]
+    },
+    "rating": 4.1,
+    "pricing": {
+      "min": 368,
+      "max": 517
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 15,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1008",
+    "name": "Provider 8 Services",
+    "services": [
+      "washing_machine_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.4061503036831,
+        17.316124697776747
+      ]
+    },
+    "rating": 3.0,
+    "pricing": {
+      "min": 490,
+      "max": 756
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 9,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1009",
+    "name": "Provider 9 Services",
+    "services": [
+      "fan_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.46773788635566,
+        17.4419835884973
+      ]
+    },
+    "rating": 3.4,
+    "pricing": {
+      "min": 406,
+      "max": 754
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1010",
+    "name": "Provider 10 Services",
+    "services": [
+      "ac_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.50695581593813,
+        17.358951644594576
+      ]
+    },
+    "rating": 3.4,
+    "pricing": {
+      "min": 408,
+      "max": 916
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1011",
+    "name": "Provider 11 Services",
+    "services": [
+      "tv_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.56782400007143,
+        17.294557802229157
+      ]
+    },
+    "rating": 3.1,
+    "pricing": {
+      "min": 104,
+      "max": 844
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1012",
+    "name": "Provider 12 Services",
+    "services": [
+      "refrigerator_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.55208840479744,
+        17.438083252480403
+      ]
+    },
+    "rating": 4.4,
+    "pricing": {
+      "min": 498,
+      "max": 563
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1013",
+    "name": "Provider 13 Services",
+    "services": [
+      "ac_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.53477489229702,
+        17.37034806677492
+      ]
+    },
+    "rating": 3.5,
+    "pricing": {
+      "min": 148,
+      "max": 617
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 1,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1014",
+    "name": "Provider 14 Services",
+    "services": [
+      "wiring"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.53069617295778,
+        17.411014676004054
+      ]
+    },
+    "rating": 3.3,
+    "pricing": {
+      "min": 491,
+      "max": 899
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 8,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1015",
+    "name": "Provider 15 Services",
+    "services": [
+      "fan_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.55561011463175,
+        17.34113518757533
+      ]
+    },
+    "rating": 3.9,
+    "pricing": {
+      "min": 350,
+      "max": 503
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1016",
+    "name": "Provider 16 Services",
+    "services": [
+      "pipe_leakage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.40088299249547,
+        17.324185666978604
+      ]
+    },
+    "rating": 3.2,
+    "pricing": {
+      "min": 351,
+      "max": 613
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 15,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1017",
+    "name": "Provider 17 Services",
+    "services": [
+      "sofa_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.42200531418369,
+        17.324005104495072
+      ]
+    },
+    "rating": 3.5,
+    "pricing": {
+      "min": 417,
+      "max": 651
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 2,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1018",
+    "name": "Provider 18 Services",
+    "services": [
+      "drainage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.42514565757449,
+        17.32075623499731
+      ]
+    },
+    "rating": 3.5,
+    "pricing": {
+      "min": 448,
+      "max": 746
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1019",
+    "name": "Provider 19 Services",
+    "services": [
+      "switch_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.56354840830528,
+        17.401789550313463
+      ]
+    },
+    "rating": 3.7,
+    "pricing": {
+      "min": 368,
+      "max": 981
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 11,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1020",
+    "name": "Provider 20 Services",
+    "services": [
+      "refrigerator_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.5264109190765,
+        17.305021454929932
+      ]
     },
     "rating": 4.8,
     "pricing": {
-      "min": 450,
-      "max": 850
+      "min": 446,
+      "max": 711
     },
     "availability": {
       "status": "available",
-      "slots": ["today_afternoon", "today_evening", "tomorrow_morning"]
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
     },
-    "verified": true
+    "verified": true,
+    "experience": 2,
+    "service_area": "Hyderabad"
   },
   {
-    "id": "P102",
-    "name": "Hyderabad Swift AC & Chill",
-    "services": ["ac_repair", "ac_cleaning"],
-    "specializations": ["water_leakage", "rapid_response", "filter_cleaning"],
+    "_id": "P1021",
+    "name": "Provider 21 Services",
+    "services": [
+      "painting"
+    ],
+    "specializations": [
+      "general"
+    ],
     "location": {
       "type": "Point",
-      "coordinates": [78.3812, 17.4485]
+      "coordinates": [
+        78.4583606407605,
+        17.460742668385922
+      ]
     },
-    "rating": 4.7,
+    "rating": 3.3,
     "pricing": {
-      "min": 400,
-      "max": 750
+      "min": 328,
+      "max": 769
     },
     "availability": {
       "status": "available",
-      "slots": ["today_immediate", "today_evening"]
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
     },
-    "verified": true
+    "verified": true,
+    "experience": 9,
+    "service_area": "Hyderabad"
   },
   {
-    "id": "P103",
-    "name": "AquaFlow Plumbing Works",
-    "services": ["pipe_leakage", "tap_repair", "drainage_blockage"],
-    "specializations": ["water_leakage", "emergency_pipe_burst", "sewer_clearing"],
+    "_id": "P1022",
+    "name": "Provider 22 Services",
+    "services": [
+      "ac_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
     "location": {
       "type": "Point",
-      "coordinates": [78.4744, 17.3616]
-    },
-    "rating": 4.6,
-    "pricing": {
-      "min": 300,
-      "max": 650
-    },
-    "availability": {
-      "status": "available",
-      "slots": ["today_afternoon", "tomorrow_morning"]
-    },
-    "verified": true
-  },
-  {
-    "id": "P104",
-    "name": "SparkSafe Electricals",
-    "services": ["fan_repair", "switch_repair", "wiring_repair"],
-    "specializations": ["short_circuit", "tripping_mcb", "fuse_repair"],
-    "location": {
-      "type": "Point",
-      "coordinates": [78.4357, 17.4325]
-    },
-    "rating": 4.9,
-    "pricing": {
-      "min": 350,
-      "max": 700
-    },
-    "availability": {
-      "status": "available",
-      "slots": ["today_evening", "tomorrow_afternoon"]
-    },
-    "verified": true
-  },
-  {
-    "id": "P105",
-    "name": "ElectroFix Appliance Care",
-    "services": ["washing_machine_repair", "refrigerator_repair", "tv_repair"],
-    "specializations": ["drum_vibration", "cooling_failure", "board_diagnostics"],
-    "location": {
-      "type": "Point",
-      "coordinates": [78.3688, 17.4399]
+      "coordinates": [
+        78.52872609567342,
+        17.480710899025013
+      ]
     },
     "rating": 4.5,
     "pricing": {
-      "min": 500,
-      "max": 1100
+      "min": 388,
+      "max": 604
     },
     "availability": {
       "status": "available",
-      "slots": ["tomorrow_morning", "tomorrow_afternoon"]
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
     },
-    "verified": true
+    "verified": false,
+    "experience": 6,
+    "service_area": "Hyderabad"
   },
   {
-    "id": "P106",
-    "name": "QuickRescue Auto Roadside",
-    "services": ["battery_assistance", "tyre_assistance", "minor_breakdown"],
-    "specializations": ["dead_battery", "flat_tyre_puncture", "jumpstart"],
+    "_id": "P1023",
+    "name": "Provider 23 Services",
+    "services": [
+      "switch_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
     "location": {
       "type": "Point",
-      "coordinates": [78.4983, 17.4411]
+      "coordinates": [
+        78.43726859381185,
+        17.315629158920693
+      ]
+    },
+    "rating": 4.4,
+    "pricing": {
+      "min": 419,
+      "max": 740
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 12,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1024",
+    "name": "Provider 24 Services",
+    "services": [
+      "sofa_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.46048415194986,
+        17.419217100828096
+      ]
+    },
+    "rating": 3.7,
+    "pricing": {
+      "min": 474,
+      "max": 586
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 1,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1025",
+    "name": "Provider 25 Services",
+    "services": [
+      "refrigerator_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.39978435110676,
+        17.471591223136148
+      ]
+    },
+    "rating": 3.0,
+    "pricing": {
+      "min": 254,
+      "max": 774
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 1,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1026",
+    "name": "Provider 26 Services",
+    "services": [
+      "tap_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.54907514782612,
+        17.448713489389075
+      ]
+    },
+    "rating": 3.4,
+    "pricing": {
+      "min": 206,
+      "max": 769
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 7,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1027",
+    "name": "Provider 27 Services",
+    "services": [
+      "washing_machine_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.55897706958079,
+        17.474963270541508
+      ]
+    },
+    "rating": 3.1,
+    "pricing": {
+      "min": 182,
+      "max": 865
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 8,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1028",
+    "name": "Provider 28 Services",
+    "services": [
+      "painting"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.54254099814631,
+        17.38396124344482
+      ]
+    },
+    "rating": 3.4,
+    "pricing": {
+      "min": 477,
+      "max": 724
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 8,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1029",
+    "name": "Provider 29 Services",
+    "services": [
+      "battery"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.58434899181556,
+        17.29858425784752
+      ]
+    },
+    "rating": 3.4,
+    "pricing": {
+      "min": 231,
+      "max": 807
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 15,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1030",
+    "name": "Provider 30 Services",
+    "services": [
+      "washing_machine_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.56995249408969,
+        17.401879725277567
+      ]
+    },
+    "rating": 4.1,
+    "pricing": {
+      "min": 144,
+      "max": 577
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 12,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1031",
+    "name": "Provider 31 Services",
+    "services": [
+      "switch_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.57869087461923,
+        17.47042025184755
+      ]
+    },
+    "rating": 4.8,
+    "pricing": {
+      "min": 303,
+      "max": 988
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 11,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1032",
+    "name": "Provider 32 Services",
+    "services": [
+      "home_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.45912412929826,
+        17.367259331089066
+      ]
+    },
+    "rating": 3.9,
+    "pricing": {
+      "min": 126,
+      "max": 722
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 11,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1033",
+    "name": "Provider 33 Services",
+    "services": [
+      "painting"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.53115459144877,
+        17.45094108031261
+      ]
     },
     "rating": 4.7,
     "pricing": {
-      "min": 400,
-      "max": 900
+      "min": 396,
+      "max": 615
     },
     "availability": {
       "status": "available",
-      "slots": ["today_immediate", "today_afternoon"]
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
     },
-    "verified": true
+    "verified": true,
+    "experience": 9,
+    "service_area": "Hyderabad"
   },
   {
-    "id": "P107",
-    "name": "UrbanShine Home Cleaning",
-    "services": ["home_cleaning", "sofa_cleaning"],
-    "specializations": ["deep_cleaning", "stain_removal", "sanitization"],
+    "_id": "P1034",
+    "name": "Provider 34 Services",
+    "services": [
+      "drainage"
+    ],
+    "specializations": [
+      "general"
+    ],
     "location": {
       "type": "Point",
-      "coordinates": [78.4867, 17.3850]
+      "coordinates": [
+        78.49765231830136,
+        17.379988424095895
+      ]
+    },
+    "rating": 4.9,
+    "pricing": {
+      "min": 409,
+      "max": 949
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 5,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1035",
+    "name": "Provider 35 Services",
+    "services": [
+      "tyre"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.49128700075691,
+        17.38701062645766
+      ]
+    },
+    "rating": 4.4,
+    "pricing": {
+      "min": 324,
+      "max": 574
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 12,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1036",
+    "name": "Provider 36 Services",
+    "services": [
+      "tap_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.58638361552516,
+        17.321219978436684
+      ]
+    },
+    "rating": 4.9,
+    "pricing": {
+      "min": 313,
+      "max": 960
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 2,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1037",
+    "name": "Provider 37 Services",
+    "services": [
+      "battery"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.47162648561101,
+        17.460981178507126
+      ]
     },
     "rating": 4.6,
     "pricing": {
-      "min": 800,
-      "max": 2500
+      "min": 363,
+      "max": 845
     },
     "availability": {
       "status": "available",
-      "slots": ["tomorrow_morning"]
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
     },
-    "verified": true
+    "verified": true,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1038",
+    "name": "Provider 38 Services",
+    "services": [
+      "refrigerator_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.52579501511775,
+        17.292758997369976
+      ]
+    },
+    "rating": 3.5,
+    "pricing": {
+      "min": 274,
+      "max": 509
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 8,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1039",
+    "name": "Provider 39 Services",
+    "services": [
+      "fan_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.38760415471965,
+        17.38148548789906
+      ]
+    },
+    "rating": 4.4,
+    "pricing": {
+      "min": 412,
+      "max": 899
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 15,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1040",
+    "name": "Provider 40 Services",
+    "services": [
+      "wiring"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.53099444724062,
+        17.43395421597424
+      ]
+    },
+    "rating": 3.6,
+    "pricing": {
+      "min": 205,
+      "max": 825
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 13,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1041",
+    "name": "Provider 41 Services",
+    "services": [
+      "drainage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.57374992805711,
+        17.455469273853513
+      ]
+    },
+    "rating": 3.7,
+    "pricing": {
+      "min": 285,
+      "max": 980
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 7,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1042",
+    "name": "Provider 42 Services",
+    "services": [
+      "battery"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.48183501885823,
+        17.453960378356044
+      ]
+    },
+    "rating": 4.3,
+    "pricing": {
+      "min": 103,
+      "max": 724
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 11,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1043",
+    "name": "Provider 43 Services",
+    "services": [
+      "wiring"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.40357553698158,
+        17.29928885621015
+      ]
+    },
+    "rating": 4.5,
+    "pricing": {
+      "min": 252,
+      "max": 953
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 12,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1044",
+    "name": "Provider 44 Services",
+    "services": [
+      "painting"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.57577740620538,
+        17.34423257274028
+      ]
+    },
+    "rating": 3.3,
+    "pricing": {
+      "min": 400,
+      "max": 602
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 4,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1045",
+    "name": "Provider 45 Services",
+    "services": [
+      "tyre"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.3990476440292,
+        17.434873956285397
+      ]
+    },
+    "rating": 3.9,
+    "pricing": {
+      "min": 270,
+      "max": 585
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 8,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1046",
+    "name": "Provider 46 Services",
+    "services": [
+      "drainage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.56273721593028,
+        17.43805925119844
+      ]
+    },
+    "rating": 3.1,
+    "pricing": {
+      "min": 403,
+      "max": 969
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1047",
+    "name": "Provider 47 Services",
+    "services": [
+      "drainage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.51401279705007,
+        17.410035336578982
+      ]
+    },
+    "rating": 3.9,
+    "pricing": {
+      "min": 338,
+      "max": 975
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 13,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1048",
+    "name": "Provider 48 Services",
+    "services": [
+      "sofa_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.391373218376,
+        17.305492715684508
+      ]
+    },
+    "rating": 3.9,
+    "pricing": {
+      "min": 426,
+      "max": 933
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 9,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1049",
+    "name": "Provider 49 Services",
+    "services": [
+      "switch_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.51778562303109,
+        17.321930867369886
+      ]
+    },
+    "rating": 4.0,
+    "pricing": {
+      "min": 473,
+      "max": 954
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 1,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1050",
+    "name": "Provider 50 Services",
+    "services": [
+      "painting"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.52448247059701,
+        17.344479592780125
+      ]
+    },
+    "rating": 4.6,
+    "pricing": {
+      "min": 189,
+      "max": 715
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 1,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1051",
+    "name": "Provider 51 Services",
+    "services": [
+      "wiring"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.58055483783062,
+        17.409267399841305
+      ]
+    },
+    "rating": 3.1,
+    "pricing": {
+      "min": 341,
+      "max": 543
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 8,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1052",
+    "name": "Provider 52 Services",
+    "services": [
+      "home_cleaning"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.44582504379554,
+        17.44244175633199
+      ]
+    },
+    "rating": 3.4,
+    "pricing": {
+      "min": 307,
+      "max": 528
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 11,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1053",
+    "name": "Provider 53 Services",
+    "services": [
+      "tyre"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.56748533121382,
+        17.373516666832767
+      ]
+    },
+    "rating": 4.8,
+    "pricing": {
+      "min": 164,
+      "max": 916
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 9,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1054",
+    "name": "Provider 54 Services",
+    "services": [
+      "battery"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.5342281345903,
+        17.294406994318475
+      ]
+    },
+    "rating": 3.5,
+    "pricing": {
+      "min": 405,
+      "max": 979
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 10,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1055",
+    "name": "Provider 55 Services",
+    "services": [
+      "tap_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.38763251431989,
+        17.438645821946135
+      ]
+    },
+    "rating": 4.6,
+    "pricing": {
+      "min": 226,
+      "max": 639
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 15,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1056",
+    "name": "Provider 56 Services",
+    "services": [
+      "pipe_leakage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.41412095748788,
+        17.46190073604575
+      ]
+    },
+    "rating": 4.8,
+    "pricing": {
+      "min": 443,
+      "max": 883
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 14,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1057",
+    "name": "Provider 57 Services",
+    "services": [
+      "tap_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.44423916548045,
+        17.4430788386444
+      ]
+    },
+    "rating": 4.1,
+    "pricing": {
+      "min": 431,
+      "max": 666
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 10,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1058",
+    "name": "Provider 58 Services",
+    "services": [
+      "pipe_leakage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.57110721029557,
+        17.417557373235294
+      ]
+    },
+    "rating": 3.2,
+    "pricing": {
+      "min": 497,
+      "max": 681
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": false,
+    "experience": 11,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1059",
+    "name": "Provider 59 Services",
+    "services": [
+      "pipe_leakage"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.5225179692641,
+        17.32917799425363
+      ]
+    },
+    "rating": 3.9,
+    "pricing": {
+      "min": 325,
+      "max": 714
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 6,
+    "service_area": "Hyderabad"
+  },
+  {
+    "_id": "P1060",
+    "name": "Provider 60 Services",
+    "services": [
+      "refrigerator_repair"
+    ],
+    "specializations": [
+      "general"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        78.52082046559354,
+        17.338944820146
+      ]
+    },
+    "rating": 3.7,
+    "pricing": {
+      "min": 164,
+      "max": 929
+    },
+    "availability": {
+      "status": "available",
+      "slots": [
+        "10:00",
+        "14:00"
+      ]
+    },
+    "verified": true,
+    "experience": 7,
+    "service_area": "Hyderabad"
   }
 ]
