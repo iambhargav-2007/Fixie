@@ -3,7 +3,7 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import services, providers, recommendations
+from app.api import services, providers, recommendations, requests
 
 app = FastAPI(
     title="FixFind AI API",
@@ -30,6 +30,7 @@ app.add_middleware(
 app.include_router(services.router)
 app.include_router(providers.router)
 app.include_router(recommendations.router)
+app.include_router(requests.router)
 
 @app.get("/health", tags=["Health"])
 async def health_check():

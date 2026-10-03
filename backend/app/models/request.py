@@ -1,23 +1,41 @@
-"""Service request data models and schemas."""
+from enum import Enum
+from pydantic import BaseModel, Field, field_validator
+from typing import Dict, Any, Optional, List
+from datetime import datetime, timezone
+from app.models.provider import GeoJSONPoint, Pricing
 
-from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field
+class RequestStatus(str, Enum):
+    pending = "pending"
+    accepted = "accepted"
+    rejected = "rejected"
+    completed = "completed"
+    cancelled = "cancelled"
 
+class ProblemDescription(BaseModel):
+    issue: str
+    specialization: Optional[str] = None
 
 class ServiceRequestCreate(BaseModel):
-    """Schema for creating a service request."""
+    user_id: str
     provider_id: str
     service: str
-    problem: Dict[str, Any] = Field(default_factory=dict)
+    problem: ProblemDescription
+    location: Optional[GeoJSONPoint] = None
     preferred_time: Optional[str] = None
+    budget: Optional[Pricing] = None
 
+class ServiceRequestUpdateStatus(BaseModel):
+    status: RequestStatus
 
-class ServiceRequest(BaseModel):
-    """Schema for a confirmed or stored service request."""
-    id: str
-    provider_id: str
-    service: str
-    problem: Dict[str, Any]
-    preferred_time: Optional[str] = None
-    status: str = "pending"
-    created_at: Optional[str] = None
+class ServiceRequest(ServiceRequestCreate):
+    id: str = Field(alias="_id")
+    status: RequestStatus
+    created_at: str
+    updated_at: str
+
+    class Config:
+        populate_by_name = True
+
+class ServiceRequestListResponse(BaseModel):
+    requests: List[ServiceRequest]
+    count: int
