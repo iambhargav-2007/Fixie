@@ -18,6 +18,7 @@ class ClarificationResult(BaseModel):
     """Structured output for clarification generation."""
     clarification_question: Optional[str] = Field(None, description="The single question to ask the user.")
     target_information: Optional[str] = Field(None, description="The specific field/concept being asked about.")
+    reasoning: Optional[str] = Field(None, description="A brief explanation of WHY you need this information to find the right provider.")
 
 
 def get_priority_missing_field(missing_information: List[str]) -> Optional[str]:
@@ -115,8 +116,8 @@ def clarification_agent(state: ServiceState) -> dict:
             "- The current problem analysis and the user's conversation history.\n"
             "- A 'TARGET MISSING INFORMATION' field specifying exactly what needs to be asked.\n\n"
             "EXPECTED OUTPUT (Strict JSON):\n"
-            "- A ClarificationResult object containing a single, concise 'clarification_question' and the 'target_information' it addresses.\n\n"
-            "You must ask about the 'TARGET MISSING INFORMATION' specified in the context.\n"
+            "- A ClarificationResult object containing a single, concise 'clarification_question', the 'target_information' it addresses, and 'reasoning' (a brief explanation of why this info is needed).\n\n"
+            "You must ask about the 'TARGET MISSING INFORMATION' specified in the context and explain why it's necessary.\n"
             "Ask only ONE short, natural question. Avoid technical jargon.\n\n"
             "IMPORTANT: If the user has ALREADY provided the answer in the conversation history, "
             "do NOT ask the question again. Instead, return null for both fields.\n"
@@ -145,6 +146,7 @@ def clarification_agent(state: ServiceState) -> dict:
             
             return {
                 "clarification_question": result.clarification_question,
+                "clarification_reasoning": result.reasoning,
                 # Output the target info we asked about, or None if the LLM deemed it already answered
                 "target_information": result.target_information if result.clarification_question else None
             }

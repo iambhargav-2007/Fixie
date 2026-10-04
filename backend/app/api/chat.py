@@ -6,6 +6,10 @@ from typing import Optional, Dict, Any, List
 from backend.app.graph.workflow import build_graph
 from backend.app.models.state import ServiceState
 import logging
+import os
+import tempfile
+import base64
+from openai import OpenAI
 
 logger = logging.getLogger(__name__)
 
@@ -41,12 +45,14 @@ class ProviderResponse(BaseModel):
     verified: bool
     fit_score: float
     score_breakdown: Dict[str, float]
+    location: Dict[str, float]
 
 class ChatResponse(BaseModel):
     session_id: str
     workflow_status: str
     message: str
     clarification_question: Optional[str] = None
+    clarification_reasoning: Optional[str] = None
     problem: Optional[Dict[str, Any]] = None
     service: Optional[Dict[str, str]] = None
     providers: List[ProviderResponse] = []
@@ -74,6 +80,38 @@ async def chat_endpoint(req: ChatRequest):
         state["image_input"] = req.image_url
     if req.audio_url:
         state["audio_input"] = req.audio_url
+        if req.audio_url.startswith("data:audio"):
+            try:
+                header, encoded = req.audio_url.split(",", 1)
+                audio_data = base64.b64decode(encoded)
+                
+                ext = "webm"
+                if "mp4" in header: ext = "mp4"
+                elif "wav" in header: ext = "wav"
+                
+                with tempfile.NamedTemporaryFile(delete=False, suffix=f".{ext}") as tmp:
+                    tmp.write(audio_data)
+                    tmp_path = tmp.name
+                
+                client = OpenAI()
+                with open(tmp_path, "rb") as audio_file:
+                    transcript = client.audio.transcriptions.create(
+                        model="whisper-1", 
+                        file=audio_file,
+                        response_format="text"
+                    )
+                
+                state["transcription"] = transcript
+                
+                if not req.text and transcript:
+                    state["messages"].append({"role": "user", "content": f"[Voice Note]: {transcript}"})
+                elif req.text and transcript:
+                    # Update the last message to include both
+                    state["messages"][-1]["content"] = f"{req.text}\n[Voice Note]: {transcript}"
+                
+                os.remove(tmp_path)
+            except Exception as e:
+                logger.error(f"Whisper API error: {e}")
         
     if req.location:
         state["location"] = req.location.model_dump()
@@ -96,13 +134,15 @@ async def chat_endpoint(req: ChatRequest):
     
     if status == "clarification_required":
         question = state.get("clarification_question")
+        reasoning = state.get("clarification_reasoning")
         if question:
             state["messages"].append({"role": "assistant", "content": question})
         return ChatResponse(
             session_id=session_id,
             workflow_status=status,
             message="I need one more detail.",
-            clarification_question=question
+            clarification_question=question,
+            clarification_reasoning=reasoning
         )
     elif status == "no_match":
         return ChatResponse(
@@ -110,6 +150,15 @@ async def chat_endpoint(req: ChatRequest):
             workflow_status=status,
             message="We couldn't find a suitable provider nearby.",
             providers=[]
+        )
+    elif status == "irrelevant":
+        question = state.get("clarification_question", "Please ask relevant questions like repair works related to mechanical and electrical to the system.")
+        state["messages"].append({"role": "assistant", "content": question})
+        return ChatResponse(
+            session_id=session_id,
+            workflow_status=status,
+            message="Topic is irrelevant.",
+            clarification_question=question
         )
     elif status == "completed":
         ranked = state.get("ranked_providers", [])
@@ -128,15 +177,16 @@ async def chat_endpoint(req: ChatRequest):
                 availability_slots=p.get("availability_slots", []),
                 verified=p.get("verified", False),
                 fit_score=p.get("fit_score", 0.0),
-                score_breakdown=p.get("score_breakdown", {}) if isinstance(p.get("score_breakdown"), dict) else p.get("score_breakdown", {}).model_dump() if hasattr(p.get("score_breakdown", {}), "model_dump") else {}
+                score_breakdown=p.get("score_breakdown", {}) if isinstance(p.get("score_breakdown"), dict) else p.get("score_breakdown", {}).model_dump() if hasattr(p.get("score_breakdown", {}), "model_dump") else {},
+                location=p.get("location", {"lat": 0.0, "lng": 0.0})
             ))
             
         service_info = None
         if state.get("service"):
             service_info = {
-                "category": state.get("service_category", ""),
-                "service": state.get("service", ""),
-                "specialization": state.get("specialization", "")
+                "category": state.get("service_category") or "",
+                "service": state.get("service") or "",
+                "specialization": state.get("specialization") or ""
             }
             
         return ChatResponse(

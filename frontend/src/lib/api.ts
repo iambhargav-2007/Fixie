@@ -20,6 +20,10 @@ export interface ProviderResponse {
   verified: boolean;
   fit_score: number;
   score_breakdown: Record<string, number>;
+  location: {
+    lat: number;
+    lng: number;
+  };
 }
 
 export interface ChatResponse {
@@ -27,6 +31,7 @@ export interface ChatResponse {
   workflow_status: string;
   message: string;
   clarification_question?: string;
+  clarification_reasoning?: string;
   problem?: any;
   service?: {
     category: string;
@@ -38,7 +43,7 @@ export interface ChatResponse {
 }
 
 export const api = {
-  chat: async (sessionId: string, text: string, location?: LocationInput, imageUrl?: string): Promise<ChatResponse> => {
+  chat: async (sessionId: string, text: string, location?: LocationInput, imageUrl?: string, audioUrl?: string): Promise<ChatResponse> => {
     const res = await fetch(`${API_BASE}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -47,6 +52,7 @@ export const api = {
         text,
         location,
         image_url: imageUrl,
+        audio_url: audioUrl,
       }),
     });
     if (!res.ok) throw new Error("Failed to communicate with chat API");
@@ -69,13 +75,13 @@ export const api = {
   },
 
   getRequest: async (requestId: string): Promise<any> => {
-    const res = await fetch(`${API_BASE}/requests/${requestId}`);
+    const res = await fetch(`${API_BASE}/requests/${requestId}`, { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to get request status");
     return res.json();
   },
 
   listRequests: async (): Promise<any[]> => {
-    const res = await fetch(`${API_BASE}/requests`);
+    const res = await fetch(`${API_BASE}/requests`, { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to list requests");
     return res.json();
   },

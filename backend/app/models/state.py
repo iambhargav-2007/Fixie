@@ -20,9 +20,11 @@ class ServiceState(TypedDict, total=False):
     vision_result: Optional[dict]
     problem: Optional[dict]
     requirements: Optional[dict]
+    is_relevant: Optional[bool]
 
     missing_information: list
     clarification_question: Optional[str]
+    clarification_reasoning: Optional[str]
 
     service_category: Optional[str]
     service: Optional[str]

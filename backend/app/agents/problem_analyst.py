@@ -44,6 +44,7 @@ class ProblemAnalysis(BaseModel):
     requirements: Dict[str, Any] = Field(default_factory=dict, description="Key attributes required for provider search")
     missing_information: List[str] = Field(default_factory=list, description="List of missing information preventing search")
     requirements_complete: bool = Field(False, description="True if sufficient information exists to search providers")
+    is_relevant: bool = Field(True, description="False if the user is asking about an irrelevant topic (not related to mechanical/electrical/repair works, etc.)")
     confidence: float = Field(0.0, description="Confidence in the analysis (0.0 to 1.0)")
 
 
@@ -104,7 +105,8 @@ def problem_analyst_agent(state: ServiceState) -> dict:
             "- extract urgency ('low', 'medium', 'high')\n"
             "- extract preferred timing\n"
             "- identify missing information (ONLY ask for missing details about the PROBLEM or SERVICE. Do NOT ask for location/address unless explicitly stated as 'Not provided' in context)\n"
-            "- determine whether requirements are complete\n\n"
+            "- determine whether requirements are complete\n"
+            "- determine if the query is relevant to home/appliance repair, plumbing, electrical, etc. If irrelevant (e.g. coding, politics, general chat), set 'is_relevant' to False and add 'irrelevant_topic' to missing_information.\n\n"
             f"Examples of services include: {valid_services_str}\n"
             "However, you are NOT restricted to these. Infer the most accurate service category and service name.\n\n"
             "You must:\n"
@@ -179,6 +181,7 @@ def problem_analyst_agent(state: ServiceState) -> dict:
             return {
                 "problem": result.model_dump(),
                 "requirements": result.requirements,
+                "is_relevant": result.is_relevant,
                 # Write service/specialization to top-level state for downstream nodes
                 "service_category": result.service_category,
                 "service": result.service,

@@ -18,14 +18,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     
-    if (!username.trim()) {
-      setError("Please enter your username.");
-      return;
-    }
-    if (!password.trim()) {
-      setError("Please enter your password.");
-      return;
-    }
+    // No validation needed for dummy login
 
     setLoading(true);
 
@@ -141,44 +134,9 @@ export default function LoginPage() {
               )}
             </AnimatePresence>
 
-            <div className="space-y-4">
-              {/* Username Input */}
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-ink" htmlFor="username">Username</label>
-                <input
-                  id="username"
-                  type="text"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full bg-surface border-2 border-border focus:border-primary px-4 py-3.5 rounded-xl outline-none transition-colors text-ink font-medium placeholder:text-ink-mute"
-                />
-              </div>
-
-              {/* Password Input */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label className="text-sm font-bold text-ink" htmlFor="password">Password</label>
-                  <button type="button" className="text-xs font-bold text-primary hover:text-primary-hover">Forgot password?</button>
-                </div>
-                <div className="relative">
-                  <input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-surface border-2 border-border focus:border-primary pl-4 pr-12 py-3.5 rounded-xl outline-none transition-colors text-ink font-medium placeholder:text-ink-mute"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-mute hover:text-ink transition-colors p-1"
-                  >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                  </button>
-                </div>
-              </div>
+            {/* Only Role Selection needed */}
+            <div className="text-center text-sm font-bold text-ink-soft py-4">
+              Select your role above to continue.
             </div>
 
             {/* Submit Button */}

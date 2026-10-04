@@ -16,9 +16,9 @@ _requests = {}
 
 class ServiceRequestInput(BaseModel):
     provider_id: str
-    problem: Dict[str, Any]
-    service: Dict[str, str]
-    location: Dict[str, Any]
+    problem: Optional[Dict[str, Any]] = None
+    service: Optional[Dict[str, str]] = None
+    location: Optional[Dict[str, Any]] = None
     preferred_time: Optional[str] = None
 
 class ServiceRequestStatusUpdate(BaseModel):

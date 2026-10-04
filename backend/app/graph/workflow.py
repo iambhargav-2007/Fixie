@@ -46,6 +46,10 @@ def route_after_analysis(state: ServiceState) -> str:
     if state.get("error"):
         return "error"
         
+    if state.get("is_relevant") is False:
+        logger.info("Irrelevant query detected.")
+        return "irrelevant_topic"
+        
     if state.get("problem", {}).get("requirements_complete"):
         logger.info("Requirements complete. Routing to validation.")
         return "validate_service"
@@ -159,6 +163,13 @@ def handle_error(state: ServiceState) -> dict:
         "ready_for_discovery": False
     }
 
+def irrelevant_topic_node(state: ServiceState) -> dict:
+    """Handles off-topic or irrelevant questions."""
+    return {
+        "workflow_status": "irrelevant",
+        "clarification_question": "Please ask relevant questions like repair works related to mechanical and electrical to the system."
+    }
+
 
 def check_clarification_error(state: ServiceState) -> str:
     """Check if clarification agent threw an error."""
@@ -189,6 +200,7 @@ def build_graph():
     workflow.add_node("set_completed", set_completed)
     workflow.add_node("set_clarification", set_clarification)
     workflow.add_node("handle_error", handle_error)
+    workflow.add_node("irrelevant_topic", irrelevant_topic_node)
     
     # Construct edges
     workflow.add_edge(START, "supervisor")
@@ -224,6 +236,7 @@ def build_graph():
         {
             "validate_service": "validate_service",
             "clarification": "clarification_agent",
+            "irrelevant_topic": "irrelevant_topic",
             "error": "handle_error"
         }
     )
@@ -255,6 +268,7 @@ def build_graph():
     workflow.add_edge("no_match", END)
     workflow.add_edge("set_clarification", END)
     workflow.add_edge("handle_error", END)
+    workflow.add_edge("irrelevant_topic", END)
     
     # Compile the graph
     return workflow.compile()

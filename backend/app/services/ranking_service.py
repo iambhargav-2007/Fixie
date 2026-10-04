@@ -29,6 +29,7 @@ class RankedProvider(BaseModel):
     verified: bool
     fit_score: float
     score_breakdown: ScoreBreakdown
+    location: Dict[str, float]
 
 class MatchingResult(BaseModel):
     providers: List[RankedProvider]
@@ -89,7 +90,11 @@ class MatchingEngine:
                 availability_slots=c.provider.availability.slots,
                 verified=c.provider.verified,
                 fit_score=round(fit_score, 2),
-                score_breakdown=breakdown
+                score_breakdown=breakdown,
+                location={
+                    "lat": c.provider.location.coordinates[1],
+                    "lng": c.provider.location.coordinates[0]
+                }
             )
             ranked_candidates.append(rp)
 

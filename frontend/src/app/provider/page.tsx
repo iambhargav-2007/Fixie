@@ -3,318 +3,250 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  CheckCircle2, MapPin, Clock, ArrowRight, Zap, Image as ImageIcon, 
-  X, Briefcase, Star, AlertCircle, ChevronRight, Navigation, LayoutDashboard, History, Settings, User
+  CheckCircle2, MapPin, Briefcase, AlertCircle, X, Wrench, Image as ImageIcon, LayoutGrid, History, User, Check, Star, Clock, Zap
 } from "lucide-react";
 import { api } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 export default function ProviderDashboard() {
-  const [activeTab, setActiveTab] = useState<'requests' | 'active'>('requests');
-  const [allRequests, setAllRequests] = useState<any[]>([]);
-  const [selectedRequest, setSelectedRequest] = useState<any | null>(null);
-  const [isAvailable, setIsAvailable] = useState(true);
+  const router = useRouter();
+  const [requests, setRequests] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   // Poll for requests
   useEffect(() => {
-    let interval = setInterval(async () => {
+    const fetchRequests = async () => {
       try {
         const reqs = await api.listRequests();
-        setAllRequests(reqs);
+        setRequests(reqs.filter((r: any) => r.status === 'pending'));
+        setLoading(false);
       } catch (e) {
-        // ignore
+        console.error("Failed to fetch requests", e);
       }
-    }, 2000);
+    };
+    fetchRequests();
+    const interval = setInterval(fetchRequests, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  const pendingRequests = allRequests.filter(r => r.status === 'pending');
-  const activeJobs = allRequests.filter(r => r.status !== 'pending' && r.status !== 'declined');
-
-  // Actions
-  const handleAccept = async (req: any) => {
+  const handleAccept = async (reqId: string) => {
     try {
-      await api.updateRequestStatus(req.id, "accepted");
-      setSelectedRequest(null);
-      setActiveTab('active');
+      await api.updateRequestStatus(reqId, "accepted");
+      setRequests(prev => prev.filter(r => r.id !== reqId));
     } catch (e) {
       alert("Failed to accept");
     }
   };
 
-  const handleDecline = async (req: any) => {
+  const handleReject = async (reqId: string) => {
     try {
-      await api.updateRequestStatus(req.id, "declined");
-      setSelectedRequest(null);
+      await api.updateRequestStatus(reqId, "declined");
+      setRequests(prev => prev.filter(r => r.id !== reqId));
     } catch (e) {
-      alert("Failed to decline");
-    }
-  };
-
-  const advanceJobStatus = async (job: any) => {
-    const statuses = ['accepted', 'scheduled', 'on the way', 'in progress', 'completed'];
-    const currentIndex = statuses.indexOf(job.status.toLowerCase());
-    if (currentIndex < statuses.length - 1) {
-      const nextStatus = statuses[currentIndex + 1];
-      try {
-        await api.updateRequestStatus(job.id, nextStatus);
-      } catch (e) {
-        alert("Failed to update status");
-      }
+      alert("Failed to reject");
     }
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans flex flex-col md:flex-row selection:bg-primary selection:text-white overflow-hidden">
+    <div className="flex h-screen bg-[#1e1e1e] text-[#e0e0e0] font-sans selection:bg-[#3d3d3d] overflow-hidden">
       
-      {/* 1. Sidebar Navigation */}
-      <aside className="hidden md:flex w-64 bg-surface border-r border-border flex-col justify-between sticky top-0 h-screen">
+      {/* Sidebar */}
+      <div className="w-64 bg-[#252526] border-r border-[#333] flex flex-col justify-between flex-shrink-0 h-full">
         <div>
-          <div className="px-8 py-8">
-            <div className="font-black text-2xl tracking-tighter flex items-center gap-2 text-ink">
-              <div className="w-5 h-5 bg-primary rounded-sm" />
-              <span>FixFind <span className="text-primary">Pro</span></span>
+          <div className="p-6 pb-8 flex items-center gap-3 font-black text-xl text-white tracking-tight cursor-pointer" onClick={() => router.push('/')}>
+            <div className="w-6 h-6 bg-emerald-500 rounded-md flex items-center justify-center text-white">
+               <Wrench className="w-4 h-4" />
             </div>
+            <span>FixFind AI</span>
           </div>
-          <nav className="px-4 space-y-2 font-bold text-sm">
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-tint text-primary border border-primary/20">
-              <Briefcase className="w-5 h-5" /> Workspace
-            </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-ink-soft hover:text-ink hover:bg-background transition-colors">
-              <LayoutDashboard className="w-5 h-5" /> Overview
-            </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-ink-soft hover:text-ink hover:bg-background transition-colors">
-              <History className="w-5 h-5" /> History
-            </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-ink-soft hover:text-ink hover:bg-background transition-colors">
-              <User className="w-5 h-5" /> Profile
-            </button>
+          
+          <nav className="px-4 space-y-1">
+            <div className="flex items-center gap-3 bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold px-4 py-3 rounded-xl cursor-pointer">
+              <Briefcase className="w-5 h-5" />
+              Workspace
+            </div>
           </nav>
         </div>
-        <div className="p-4 border-t border-border">
-          <div className="bg-background border border-border p-4 rounded-2xl">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center text-accent font-black">CC</div>
-              <div>
-                <div className="text-sm font-black text-ink">CoolCare</div>
-                <div className="text-xs font-bold text-ink-mute flex items-center gap-1"><Star className="w-3 h-3 text-accent fill-accent"/> 4.7 (128)</div>
+        
+        <div className="p-4 m-4 bg-[#1e1e1e] rounded-2xl border border-[#404040] shadow-sm relative">
+          <div className="absolute -left-3 -bottom-3 w-10 h-10 bg-[#1e1e1e] border border-[#404040] rounded-full flex items-center justify-center text-white font-black shadow-lg z-10">
+            N
+          </div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 bg-orange-500/10 text-orange-500 rounded-full flex items-center justify-center font-bold text-sm">
+              CC
+            </div>
+            <div>
+              <div className="font-bold text-sm text-white">CoolCare Services</div>
+              <div className="flex items-center text-xs text-gray-400 font-medium mt-0.5">
+                <Star className="w-3 h-3 text-yellow-500 fill-current mr-1" /> 4.7 (128)
               </div>
             </div>
-            <button 
-              onClick={() => setIsAvailable(!isAvailable)}
-              className={`w-full py-2 rounded-lg text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-colors ${isAvailable ? 'bg-ok/10 text-ok border border-ok/20' : 'bg-ink-mute/10 text-ink-mute border border-border'}`}
-            >
-              <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-ok' : 'bg-ink-mute'}`} />
-              {isAvailable ? 'Available' : 'Away'}
-            </button>
+          </div>
+          <div className="bg-emerald-500/10 text-emerald-500 text-xs font-bold px-3 py-1.5 rounded-lg flex items-center justify-center gap-2 border border-emerald-500/20">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            AVAILABLE
           </div>
         </div>
-      </aside>
+      </div>
 
-      {/* 2. Main Workspace */}
-      <main className="flex-1 h-screen overflow-y-auto relative bg-background">
-        
-        {/* Mobile Header */}
-        <header className="md:hidden bg-surface border-b border-border p-4 flex items-center justify-between sticky top-0 z-40">
-           <div className="font-black text-xl tracking-tighter flex items-center gap-2 text-ink">
-             <div className="w-4 h-4 bg-primary rounded-sm" />
-             <span>FixFind Pro</span>
-           </div>
-           <div className="flex items-center gap-3">
-             <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-ok' : 'bg-ink-mute'}`} />
-             <div className="w-8 h-8 bg-accent/20 rounded-full flex items-center justify-center text-accent font-black text-xs">CC</div>
-           </div>
-        </header>
-
-        <div className="max-w-5xl mx-auto p-6 md:p-12 space-y-12 pb-32">
+      {/* Main Content */}
+      <main className="flex-1 overflow-y-auto p-8 md:p-12">
+        <div className="max-w-5xl mx-auto">
           
-          <section>
-            <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-ink mb-4">
-              Good evening, CoolCare 👋
-            </h1>
-            <p className="text-xl text-ink-soft font-bold max-w-2xl">
-              Review customer problems, understand what FixFind identified, and choose the jobs that fit your expertise.
-            </p>
-          </section>
-
-          <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-surface border border-border p-5 rounded-2xl shadow-sm">
-              <div className="text-3xl font-black text-ink">{pendingRequests.length}</div>
-              <div className="text-xs font-black uppercase tracking-widest text-primary mt-1">New Requests</div>
-            </div>
-            <div className="bg-surface border border-border p-5 rounded-2xl shadow-sm">
-              <div className="text-3xl font-black text-ink">{activeJobs.length}</div>
-              <div className="text-xs font-black uppercase tracking-widest text-ink-mute mt-1">Active Jobs</div>
-            </div>
-            <div className="bg-surface border border-border p-5 rounded-2xl shadow-sm">
-              <div className="text-3xl font-black text-ink">128</div>
-              <div className="text-xs font-black uppercase tracking-widest text-ink-mute mt-1">Completed</div>
-            </div>
-            <div className="bg-surface border border-border p-5 rounded-2xl shadow-sm">
-              <div className="text-3xl font-black text-ink flex items-center gap-1">4.7 <Star className="w-5 h-5 text-accent fill-accent"/></div>
-              <div className="text-xs font-black uppercase tracking-widest text-ink-mute mt-1">Rating</div>
-            </div>
-          </section>
-
-          <div className="flex border-b border-border gap-8">
-            <button 
-              onClick={() => setActiveTab('requests')}
-              className={`pb-4 text-sm font-black uppercase tracking-widest transition-colors relative ${activeTab === 'requests' ? 'text-primary' : 'text-ink-mute hover:text-ink'}`}
-            >
-              New Requests ({pendingRequests.length})
-              {activeTab === 'requests' && <motion.div layoutId="tab-indicator" className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-primary" />}
-            </button>
-            <button 
-              onClick={() => setActiveTab('active')}
-              className={`pb-4 text-sm font-black uppercase tracking-widest transition-colors relative ${activeTab === 'active' ? 'text-primary' : 'text-ink-mute hover:text-ink'}`}
-            >
-              Active Jobs ({activeJobs.length})
-              {activeTab === 'active' && <motion.div layoutId="tab-indicator" className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-primary" />}
-            </button>
+          <div className="mb-10">
+            <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Good evening, CoolCare Services</h1>
+            <p className="text-gray-400 font-medium">You have {requests.length} new requests waiting for a response.</p>
           </div>
 
-          <AnimatePresence mode="wait">
-            
-            {/* NEW REQUESTS TAB */}
-            {activeTab === 'requests' && (
-              <motion.section 
-                key="requests"
-                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                className="space-y-6"
-              >
-                {pendingRequests.length === 0 ? (
-                  <div className="text-center py-20 bg-surface border border-border border-dashed rounded-3xl">
-                    <CheckCircle2 className="w-12 h-12 text-ink-mute mx-auto mb-4" />
-                    <h3 className="text-xl font-black text-ink">You're all caught up!</h3>
-                    <p className="text-ink-soft font-bold mt-2">We'll notify you when nearby problems match your expertise.</p>
-                  </div>
-                ) : (
-                  pendingRequests.map(req => (
-                    <motion.div 
-                      layout
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      key={req.id} 
-                      className="bg-surface border-2 border-border rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow"
-                    >
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+            <div className="bg-[#252526] border border-[#333] rounded-2xl p-5 shadow-sm">
+              <div className="text-3xl font-bold text-white mb-1">{requests.length}</div>
+              <div className="text-sm font-bold text-gray-300">New requests</div>
+              <div className="text-xs text-gray-500 font-medium mt-2">{requests.length} awaiting reply</div>
+            </div>
+            <div className="bg-[#1e1e1e] border border-[#333] rounded-2xl p-5 opacity-70">
+              <div className="text-3xl font-bold text-gray-500 mb-1">0</div>
+              <div className="text-sm font-bold text-gray-400">Active jobs</div>
+              <div className="text-xs text-gray-500 font-medium mt-2">0 in progress</div>
+            </div>
+            <div className="bg-[#252526] border border-[#333] rounded-2xl p-5 shadow-sm">
+              <div className="text-3xl font-bold text-white mb-1">128</div>
+              <div className="text-sm font-bold text-gray-300">Completed this month</div>
+              <div className="text-xs text-gray-500 font-medium mt-2">128 all time</div>
+            </div>
+            <div className="bg-[#252526] border border-[#333] rounded-2xl p-5 shadow-sm">
+              <div className="text-3xl font-bold text-white mb-1 flex items-center gap-2">
+                4.7 <Star className="w-6 h-6 text-yellow-500 fill-current" />
+              </div>
+              <div className="text-sm font-bold text-gray-300">Rating</div>
+              <div className="text-xs text-gray-500 font-medium mt-2">4.7 from 128 reviews</div>
+            </div>
+          </div>
+
+          {/* Tabs */}
+          <div className="flex border-b border-[#333] mb-8 gap-8">
+            <div className="pb-3 border-b-2 border-emerald-500 text-sm font-bold text-emerald-500 cursor-pointer">
+              NEW REQUESTS ({requests.length})
+            </div>
+            <div className="pb-3 text-sm font-bold text-gray-500 cursor-pointer">
+              ACTIVE JOBS (0)
+            </div>
+          </div>
+
+          {/* Request List */}
+          {loading ? (
+             <div className="text-center py-20 text-gray-500 font-bold animate-pulse">Loading requests...</div>
+          ) : requests.length === 0 ? (
+            <div className="bg-[#252526] border border-[#333] rounded-3xl p-16 text-center shadow-sm">
+              <div className="w-16 h-16 bg-[#1e1e1e] rounded-full flex items-center justify-center mx-auto mb-4 border border-[#404040]">
+                <AlertCircle className="w-8 h-8 text-gray-500" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">No new requests</h3>
+              <p className="text-gray-400 max-w-sm mx-auto">You're all caught up! New service requests will appear here.</p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <AnimatePresence>
+                {requests.map((req, idx) => {
+                  const isHighPriority = req.problem?.urgency === 'High' || idx === 1; // dummy logic for visual
+                  return (
+                  <motion.div 
+                    key={req.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    className="bg-[#252526] border border-[#404040] rounded-3xl p-6 shadow-xl relative overflow-hidden"
+                  >
+                    <div className="flex items-center gap-4 mb-4 text-xs font-bold text-gray-400">
+                      <div className={`px-3 py-1 rounded-full ${isHighPriority ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 'bg-orange-500/10 text-orange-500 border border-orange-500/20'}`}>
+                        {isHighPriority ? 'HIGH PRIORITY' : 'MEDIUM PRIORITY'}
+                      </div>
+                      <div>Received just now</div>
+                      <div>•</div>
+                      <div className="flex items-center gap-1">
+                        Rahul <MapPin className="w-3 h-3" /> (2.1 km away)
+                      </div>
+                    </div>
+
+                    <h2 className="text-xl font-medium text-white mb-6">
+                      "{req.problem?.issue_summary || 'No specific details provided.'}"
+                    </h2>
+
+                    <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-5 mb-6">
+                      <div className="flex items-center gap-2 text-xs font-bold text-emerald-500 uppercase tracking-wider mb-4">
+                        <Zap className="w-4 h-4 fill-current" /> FixFind Understood
+                      </div>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+                        <div>
+                          <div className="text-gray-400 mb-1">Problem</div>
+                          <div className="font-bold text-white">{req.problem?.object || 'Unknown object'}</div>
+                        </div>
+                        <div>
+                          <div className="text-gray-400 mb-1">Service</div>
+                          <div className="font-bold text-white">{req.service?.service?.replace(/_/g, ' ') || 'General Repair'}</div>
+                        </div>
+                        <div>
+                          <div className="text-gray-400 mb-1">Specialization</div>
+                          <div className="font-bold text-white">{req.service?.category?.replace(/_/g, ' ') || 'General'}</div>
+                        </div>
+                        <div>
+                          <div className="text-gray-400 mb-1">Likely Area</div>
+                          <div className="font-bold text-white">Indoor unit</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap gap-3 text-sm font-medium">
+                          <div className="flex items-center gap-2 bg-[#1e1e1e] border border-[#333] px-3 py-1.5 rounded-lg text-gray-300">
+                            <MapPin className="w-4 h-4 text-gray-500" /> Banjara Hills - 2.1 km
+                          </div>
+                          <div className="flex items-center gap-2 bg-[#1e1e1e] border border-[#333] px-3 py-1.5 rounded-lg text-gray-300">
+                            <Clock className="w-4 h-4 text-gray-500" /> Today, 4:00 PM – 6:00 PM
+                          </div>
+                          <div className="flex items-center gap-2 bg-[#1e1e1e] border border-[#333] px-3 py-1.5 rounded-lg text-gray-300">
+                            ₹ 400 - ₹ 700
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-emerald-500 font-medium">
+                          <CheckCircle2 className="w-4 h-4" /> Matches your specialization: AC leakage & drainage
+                        </div>
+                      </div>
                       
-                      <div className="flex flex-col md:flex-row gap-8 mb-8 pb-8 border-b border-border">
-                        <div className="flex-1">
-                          <div className="text-xs font-black text-ink-mute uppercase tracking-widest mb-3">Customer Problem</div>
-                          <h2 className="text-2xl font-black text-ink leading-snug">"{req.problem?.issue_summary || "Unknown Issue"}"</h2>
-                          
-                          <div className="flex flex-wrap gap-4 mt-6">
-                            <span className="flex items-center gap-1.5 text-sm font-bold text-ink-soft bg-background px-3 py-1.5 rounded-lg border border-border">
-                              <MapPin className="w-4 h-4 text-primary" /> Hyderabad
-                            </span>
-                          </div>
-                        </div>
+                      <div className="w-24 h-24 bg-[#1e1e1e] border border-[#333] rounded-xl flex flex-col items-center justify-center text-gray-500 flex-shrink-0">
+                        <ImageIcon className="w-6 h-6 mb-1" />
+                        <span className="text-xs font-bold">1 photo</span>
                       </div>
+                    </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-[1fr_250px] gap-8">
-                        <div className="bg-primary-tint border border-primary/20 p-6 rounded-2xl space-y-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Zap className="w-4 h-4 text-primary" />
-                            <h4 className="text-xs font-black text-primary uppercase tracking-widest">FixFind Understanding</h4>
-                          </div>
-                          <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm">
-                            <div><span className="text-ink-soft font-bold block">Asset</span><span className="font-black text-ink">{req.problem?.object}</span></div>
-                            <div><span className="text-ink-soft font-bold block">Issue</span><span className="font-black text-ink">{req.problem?.issue_summary}</span></div>
-                            <div><span className="text-ink-soft font-bold block">Service</span><span className="font-black text-primary">{req.service?.service}</span></div>
-                            <div><span className="text-ink-soft font-bold block">Urgency</span><span className="font-black text-warn">{req.problem?.urgency_level}</span></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+                    <div className="flex items-center justify-between border-t border-[#333] pt-6">
+                      <div className="flex gap-3">
                         <button 
-                          onClick={() => handleAccept(req)}
-                          className="w-full sm:w-auto flex-1 bg-primary text-white py-4 px-8 rounded-xl font-black text-lg hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                          onClick={() => handleAccept(req.id)}
+                          className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-8 rounded-xl transition-colors shadow-lg shadow-emerald-900/20"
                         >
-                          ACCEPT JOB <CheckCircle2 className="w-5 h-5" />
+                          Accept
                         </button>
                         <button 
-                          onClick={() => handleDecline(req)}
-                          className="w-full sm:w-auto text-ink-mute hover:text-danger font-bold text-sm py-4 px-6 transition-colors"
+                          onClick={() => handleReject(req.id)}
+                          className="bg-transparent hover:bg-red-500/10 text-red-500 border border-red-500/30 hover:border-red-500/50 font-bold py-2.5 px-8 rounded-xl transition-colors"
                         >
                           Decline
                         </button>
                       </div>
+                      <button className="text-sm font-bold text-gray-400 hover:text-white transition-colors">
+                        View details
+                      </button>
+                    </div>
 
-                    </motion.div>
-                  ))
-                )}
-              </motion.section>
-            )}
-
-            {/* ACTIVE JOBS TAB */}
-            {activeTab === 'active' && (
-              <motion.section 
-                key="active"
-                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                className="space-y-6"
-              >
-                {activeJobs.length === 0 ? (
-                  <div className="text-center py-20 bg-surface border border-border border-dashed rounded-3xl">
-                    <Briefcase className="w-12 h-12 text-ink-mute mx-auto mb-4" />
-                    <h3 className="text-xl font-black text-ink">No active jobs</h3>
-                    <p className="text-ink-soft font-bold mt-2">Accept a new request to start working.</p>
-                  </div>
-                ) : (
-                  activeJobs.map(job => (
-                    <motion.div 
-                      layout
-                      initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
-                      key={job.id} 
-                      className="bg-surface border-2 border-border rounded-3xl p-6 md:p-8 shadow-sm"
-                    >
-                      <div className="flex flex-col md:flex-row gap-8">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-4">
-                            <span className="bg-ok/10 text-ok px-3 py-1 rounded-lg text-xs font-black uppercase tracking-widest border border-ok/20">
-                              {job.status}
-                            </span>
-                            <span className="text-sm font-bold text-ink-mute">Hyderabad</span>
-                          </div>
-                          <h2 className="text-2xl font-black text-ink mb-2">{job.service?.service}</h2>
-                          <p className="text-ink-soft font-bold">"{job.problem?.issue_summary}"</p>
-                          
-                          <div className="mt-8 flex gap-4">
-                            <button 
-                              onClick={() => advanceJobStatus(job)}
-                              disabled={job.status === 'completed'}
-                              className="bg-ink text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-black transition-colors disabled:opacity-50 shadow-md"
-                            >
-                              {job.status === 'completed' ? 'Finished' : 'Advance Status'}
-                            </button>
-                          </div>
-                        </div>
-
-                        <div className="w-full md:w-64 bg-background border border-border p-6 rounded-2xl">
-                          <h4 className="text-xs font-black text-ink-mute uppercase tracking-widest mb-4">Job Journey</h4>
-                          <div className="space-y-4 relative border-l-2 border-border/50 ml-2">
-                            {['accepted', 'scheduled', 'on the way', 'in progress', 'completed'].map((s, i, arr) => {
-                               const isActive = job.status.toLowerCase() === s;
-                               const isPast = arr.indexOf(job.status.toLowerCase()) > i;
-                               return (
-                                 <div key={s} className="relative pl-6">
-                                   <div className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 ${isActive ? 'bg-primary border-primary shadow-[0_0_10px_rgba(15,118,110,0.5)]' : isPast ? 'bg-ok border-ok' : 'bg-background border-border'}`} />
-                                   <div className={`text-sm font-bold ${isActive ? 'text-primary font-black' : isPast ? 'text-ink' : 'text-ink-mute'} capitalize`}>
-                                     {s}
-                                   </div>
-                                 </div>
-                               );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))
-                )}
-              </motion.section>
-            )}
-
-          </AnimatePresence>
+                  </motion.div>
+                )})}
+              </AnimatePresence>
+            </div>
+          )}
         </div>
       </main>
     </div>
