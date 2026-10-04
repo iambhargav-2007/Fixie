@@ -2,6 +2,9 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from backend.app.api.chat import router as chat_router
+from backend.app.api.providers import router as providers_router
+from backend.app.api.requests import router as requests_router
 
 app = FastAPI(
     title="FixFind AI API",
@@ -23,3 +26,7 @@ app.add_middleware(
 async def health_check():
     """Health check endpoint."""
     return {"status": "ok", "service": "fixfind-backend"}
+
+app.include_router(chat_router, tags=["Chat"])
+app.include_router(providers_router, tags=["Providers"])
+app.include_router(requests_router, tags=["Requests"])

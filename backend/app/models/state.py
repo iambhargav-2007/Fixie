@@ -5,44 +5,39 @@ from typing_extensions import TypedDict
 
 
 class ServiceState(TypedDict, total=False):
-    """Core state object passed across agents in the LangGraph workflow.
+    """Core state object passed across agents in the LangGraph workflow."""
 
-    Defines the shared data contract between the Supervisor, Multimodal,
-    Problem Analyst, Clarification, and Recommendation agents.
-    """
-
-    # Session & Conversational Context
     session_id: str
-    messages: List[Dict[str, Any]]
+    messages: list
 
-    # Multimodal Inputs
     text_input: Optional[str]
     image_input: Optional[str]
     audio_input: Optional[str]
     transcription: Optional[str]
 
-    # Geospatial Context
-    location: Optional[Dict[str, float]]  # e.g., {"lat": 17.385, "lng": 78.486}
+    location: Optional[Dict[str, float]]
 
-    # AI Diagnostics & Analysis
-    vision_result: Optional[Dict[str, Any]]
-    problem: Optional[Dict[str, Any]]
-    requirements: Optional[Dict[str, Any]]
+    vision_result: Optional[dict]
+    problem: Optional[dict]
+    requirements: Optional[dict]
 
-    # Clarification Engine
-    missing_information: Optional[List[str]]
+    missing_information: list
     clarification_question: Optional[str]
 
-    # Service Classification
     service_category: Optional[str]
+    service: Optional[str]
+    specialization: Optional[str]
 
-    # Provider Discovery & Ranking (Deterministic Provider Engine)
-    candidate_providers: Optional[List[Dict[str, Any]]]
-    ranked_providers: Optional[List[Dict[str, Any]]]
+    candidate_providers: list
+    ranked_providers: list
 
-    # AI Recommendation & Explanation
-    recommendation: Optional[Dict[str, Any]]
+    recommendation: Optional[dict]
 
-    # Booking & Request
-    selected_provider: Optional[Dict[str, Any]]
-    service_request: Optional[Dict[str, Any]]
+    selected_provider: Optional[dict]
+    service_request: Optional[dict]
+
+    error: Optional[str]
+
+    # Orchestration & Workflow State
+    ready_for_discovery: bool
+    workflow_status: Optional[str]
